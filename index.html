@@ -54,6 +54,13 @@
             color: #d9534f;
             margin-top: 20px;
         }
+        .compact-button {
+            display: inline-block;
+            width: auto; /* Allow the button to size itself based on content */
+            max-width: 150px; /* Set a maximum width for the buttons */
+            padding: 10px 15px; /* Adjust padding for a more compact look */
+            margin: 5px; /* Add some margin for spacing */
+        }
     </style>
 </head>
 <body>
@@ -72,8 +79,8 @@
         <input type="number" id="bulkCount" class="input-field" min="1"><br>
         
         <p>Do you have a control weight?</p>
-        <button class="calculate-button" onclick="setControlWeight(true)">Yes</button>
-        <button class="calculate-button" onclick="setControlWeight(false)">No</button>
+        <button class="calculate-button compact-button" onclick="setControlWeight(true)">Yes</button>
+        <button class="calculate-button compact-button" onclick="setControlWeight(false)">No</button>
         
         <div id="controlWeightSection" class="hidden">
             <h3>Enter Control Weight</h3>
@@ -225,3 +232,4 @@
     </script>
 </body>
 </html>
+
