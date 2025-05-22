@@ -51,7 +51,6 @@
         .final-results {
             font-size: 26px;
             font-weight: bold;
-            color: #d9534f;
             margin-top: 20px;
         }
         .compact-button {
@@ -217,6 +216,29 @@
                                   <p class="final-results">Variance: ${variance} g</p>
                                   <p class="final-results">Percentage Variance: ${percentageVariance}%</p>`;
 
+            // Determine color based on weight classification
+            let isAnalytical = true; // Assume analytical first
+            for (let i = 0; i < skuCount; i++) {
+                let D = convertToGrams(parseFloat(document.getElementById(`skuSize${i}`).value) || 0, document.getElementById(`skuUnit${i}`).value);
+                if (D >= 100) {
+                    isAnalytical = false; // If any SKU is >= 100g, it's K-balance
+                    break;
+                }
+            }
+
+            // Apply color coding
+            let color;
+            if (isAnalytical) {
+                color = (percentageVariance >= 0 && percentageVariance <= 15) ? 'green' : 'red';
+            } else {
+                color = (percentageVariance >= 0 && percentageVariance <= 3) ? 'green' : 'red';
+            }
+
+            // Set color for results
+            document.querySelectorAll('.final-results').forEach(result => {
+                result.style.color = color;
+            });
+
             document.getElementById('weigherSection').classList.add('hidden');
             document.getElementById('resultSection').classList.remove('hidden');
         }
@@ -232,4 +254,5 @@
     </script>
 </body>
 </html>
+
 
